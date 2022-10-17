@@ -3,8 +3,6 @@ const router = express.Router()
 const Url = require('../../models/url')
 const createRandomText = require('../../utility/shortenUrl')
 
-
-
 router.post('/', (req, res) => {
   const url = req.body.url
   if (!url) return res.redirect('/')
@@ -24,22 +22,13 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:stringForNew', (req, res) => {
-  // const stringForNew = req.params.stringForNew
+  // 導向原先的網址
   const stringForNew = req.params.stringForNew
-  console.log(req.params.stringForNew)
-  console.log("ok")
-  // res.redirect('/')
   Url.findOne({stringForNew: stringForNew})
     .then(data => res.redirect(data.originalUrl))
     .catch(err => console.log(err))
 })
 
-// router.get('/:id', (req, res) => {
-//   const id = req.body.id
-//   return Url.findById(id)
-//     .lean()
-//     .then(() => res.render('/result'))
-//     .catch(err => console.log(err))
-// })
+
 
 module.exports = router

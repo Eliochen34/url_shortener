@@ -1,3 +1,5 @@
+// 實作產生五碼亂數之函式
+
 const randomText = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
 function createRandomText(requiredRandoms) {
