@@ -4,6 +4,7 @@ Here is the URL shortener for users to create a short link for any URL.
 - Users can type any URL and click shorten button to create a short link.
 - It will allow users to redirect to the original URL when clicking the short link.
 - Users will get the same short link if the URL already existed in the database.
+- Users can copy the short link through clicking the "Copy" button.
 ## Get Started
 1. Install the Node.js and npm.
 2. Clone the project to local.
