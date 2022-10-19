@@ -10,8 +10,9 @@
   <script>
     function copy() {
       const URL = document.querySelector("#shortenURL")
-      window.getSelection().selectAllChildren(URL)
-      alert("The URL is Copied!")
+      navigator.clipboard.writeText(URL.innerText)
+        .then(() => alert('The URL is Copied!'))
+        .catch(error => console.log(error))
     }
   </script>
   

@@ -9,22 +9,22 @@ router.post('/', (req, res) => {
   // 比對req.body.url是否存在資料庫
   // 有在資料庫，顯示result
   // 若沒有在資料庫，則至資料庫新增一筆資料
-  Url.findOne({ originalUrl: url})
+  Url.findOne({ originalUrl: url })
     .then(data =>
-       data ? data : Url.create({ originalUrl: url, stringForNew: createRandomText(5) })
+      data ? data : Url.create({ originalUrl: url, stringForNew: createRandomText(5) })
     )
     .then(data => {
       // 拿既有資料or新產生的資料去渲染result畫面
       res.render('result', { origin: req.headers.origin, stringForNew: data.stringForNew })
-      }
+    }
     )
-    .catch(err => console.log(err)) 
+    .catch(err => console.log(err))
 })
 
 router.get('/:stringForNew', (req, res) => {
   // 導向原先的網址
   const stringForNew = req.params.stringForNew
-  Url.findOne({stringForNew: stringForNew})
+  Url.findOne({ stringForNew: stringForNew })
     .then(data => res.redirect(data.originalUrl))
     .catch(err => console.log(err))
 })
