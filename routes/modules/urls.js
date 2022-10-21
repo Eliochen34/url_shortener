@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
   return Url.findOne({ originalUrl: url})
     .then(data =>{
       data ? data : Url.create({ originalUrl: url, stringForNew: createRandomText(5) })
-      return res.render('urls', { origin: req.headers.origin, stringForNew: data.stringForNew })
+      return res.render('result', { origin: req.headers.origin, stringForNew: data.stringForNew })
     })
     // .then(data => {
     //   // 拿既有資料or新產生的資料去渲染result畫面
