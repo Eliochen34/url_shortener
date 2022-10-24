@@ -11,14 +11,16 @@ router.post('/', (req, res) => {
   // 若沒有在資料庫，則至資料庫新增一筆資料
   return Url.findOne({ originalUrl: url})
     .then(data =>{
-      data ? data : Url.create({ originalUrl: url, stringForNew: createRandomText(5) })
-      return res.render('result', { origin: req.headers.origin, stringForNew: data.stringForNew })
+      if (data) {
+        return data
+      }
+      return Url.create({ originalUrl: url, stringForNew: createRandomText(5) })
     })
-    // .then(data => {
-    //   // 拿既有資料or新產生的資料去渲染result畫面
-    //   return res.render('result', { origin: req.headers.origin, stringForNew: data.stringForNew })
-    //   }
-    // )
+    .then(data => {
+      // 拿既有資料or新產生的資料去渲染result畫面
+      return res.render('result', { origin: req.headers.origin, stringForNew: data.stringForNew })
+      }
+    )
     .catch(err => console.log(err)) 
 })
 
